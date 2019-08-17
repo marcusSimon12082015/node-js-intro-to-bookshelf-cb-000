@@ -4,16 +4,13 @@ module.exports = {
 
   testing: {
     client: 'pg',
-    connection: 'postgres://localhost/learnco_blog_test',
-    /*
     connection:{
       database: 'learnco_blog_test',
       port: 5432,
       host: "127.0.0.1",
-      user: 'Matija',
-      password: 'Matija6'
-    }
-    */
+      user: 'postgres',
+      password: 'Marcussimon12082015'
+    },
     pool: {
       min:2,
       max: 10
