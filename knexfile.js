@@ -5,7 +5,6 @@ module.exports = {
   testing: {
     client: 'postgresql',
     connection: {
-      port: '5432',
       host: 'localhost',
       database: 'learnco_blog_test',
       user: 'Matija',
@@ -24,7 +23,6 @@ module.exports = {
   development: {
     client: 'postgresql',
     connection: {
-      port: '5432',
       host: 'localhost',
       database: 'learnco_blog',
       user: 'Matija',
