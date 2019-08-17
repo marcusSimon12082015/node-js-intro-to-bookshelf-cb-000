@@ -13,7 +13,7 @@ module.exports = {
       user: 'Matija',
       password: 'Matija6'
     }
-    */,
+    */
     pool: {
       min:2,
       max: 10
