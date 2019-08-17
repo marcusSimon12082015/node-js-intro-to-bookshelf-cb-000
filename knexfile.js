@@ -3,7 +3,7 @@
 module.exports = {
 
   testing: {
-    client: 'postgresql',
+    client: 'pg',
     connection:{
       database: 'learnco_blog_test',
       port: 5432,
