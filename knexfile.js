@@ -6,7 +6,7 @@ module.exports = {
     client: 'pg',
     connection:{
       database: 'learnco_blog_test',
-      port: 5432,
+      port: '5432',
       ssl:false,
       host: "127.0.0.1",
       user: 'Matija',
