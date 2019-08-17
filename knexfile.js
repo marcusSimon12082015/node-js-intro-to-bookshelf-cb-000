@@ -24,7 +24,11 @@ module.exports = {
   development: {
     client: 'postgresql',
     connection: {
+      port: '5432',
+      host: 'localhost',
       database: 'learnco_blog',
+      user: 'Matija',
+      password: 'Matija6'
     },
     pool: {
       min: 2,
