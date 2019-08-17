@@ -26,12 +26,15 @@ module.exports = {
 
   development: {
     client: 'postgresql',
+    connection: 'postgres://localhost/learnco_blog_test',
+    /*
     connection: {
       host: 'localhost',
       database: 'learnco_blog',
       user: 'Matija',
       password: 'Matija6'
     },
+    */
     pool: {
       min: 2,
       max: 10
