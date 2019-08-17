@@ -7,8 +7,8 @@ module.exports = {
     connection:{
       database: 'learnco_blog_test',
       port: 5432,
-      user: '',
-      password: ''
+      user: 'Matija',
+      password: 'Matija6'
     },
     pool: {
       min:2,
