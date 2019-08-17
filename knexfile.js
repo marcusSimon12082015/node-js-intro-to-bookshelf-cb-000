@@ -8,8 +8,8 @@ module.exports = {
       database: 'learnco_blog_test',
       port: 5432,
       host: "127.0.0.1",
-      user: 'postgres',
-      password: 'Marcussimon12082015'
+      user: 'Matija',
+      password: 'Matija6'
     },
     pool: {
       min:2,
