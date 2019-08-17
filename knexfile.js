@@ -4,7 +4,7 @@ module.exports = {
 
   testing: {
     client: 'postgresql',
-    connection:'postgres://Matija:Matija6@localhost:5432/learnco_blog_test'
+    connection:'postgres://Matija:Matija6@localhost:5432/learnco_blog_test',
     pool: {
       min:2,
       max: 10
