@@ -5,7 +5,10 @@ module.exports = {
   testing: {
     client: 'postgresql',
     connection:{
-      database: 'learnco_blog_test'
+      database: 'learnco_blog_test',
+      port: 5432,
+      user: '',
+      password: ''
     },
     pool: {
       min:2,
