@@ -6,18 +6,21 @@ exports.up = function(knex, Promise) {
       t.string('name').notNull();
       t.string('email').notNull();
       t.string('username').notNull();
+      t.timestamps();
     }),
     knex.schema.createTableIfNotExists('posts',function(t){
       t.increments('id').primary();
       t.string('title');
       t.string('body');
       t.integer('author').references('users.id');
+      t.timestamps();
     }),
     knex.schema.createTableIfNotExists('comments', (t) => {
          t.increments().primary();
          t.string('body');
          t.integer('user_id').references('users.id');
          t.integer('post_id').references('posts.id');
+         t.timestamps();
     })
   ]);
 };

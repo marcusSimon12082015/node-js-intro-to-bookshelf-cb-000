@@ -17,6 +17,7 @@ const bookshelf = require('bookshelf')(knex);
 // This is a good place to start!
 const User = bookshelf.Model.extend({
   tableName: 'users',
+  hasTimestamps: true,
   posts: function(){
     return this.hasMany(Posts,'author');
   }
@@ -24,6 +25,7 @@ const User = bookshelf.Model.extend({
 
 const Posts = bookshelf.Model.extend({
   tableName: 'posts',
+  hasTimestamps: true,
   author: function() {
     return this.belongsTo(User, 'author');
   },
@@ -34,6 +36,7 @@ const Posts = bookshelf.Model.extend({
 
 const Comments = bookshelf.Model.extend({
   tableName: 'comments',
+  hasTimestamps: true,
   user: function() {
     return this.belongsTo(User);
   },
@@ -47,6 +50,41 @@ exports.Posts = Posts;
 exports.Comments = Comments;
 
 
+app.get('/user/:id',function(req,res){
+  const id = req.params.id;
+  new User({id: id})
+    .fetch()
+    .then(function(user){
+      res.send(user.toJSON())
+    })
+    .catch(function(error){
+      res.status(404).send('Not Found');
+    });
+});
+
+app.get('/posts',function(req,res){
+  new Posts()
+    .fetchAll()
+    .then(function(posts){
+      res.send(posts.toJSON())
+    })
+    .catch(function(error){
+
+    });
+});
+
+app.get('/post/:id',function(req,res){
+  const id = req.params.id;
+  new Posts({id: id})
+    .fetch({withRelated:['author']})
+    .then(function(post){
+      res.send(post.toJSON())
+    })
+    .catch(function(error){
+      res.status(404).send('Not Found');
+    });
+
+});
 
 // Exports for Server hoisting.
 const listen = (port) => {
