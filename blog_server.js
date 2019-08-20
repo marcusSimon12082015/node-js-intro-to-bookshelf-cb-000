@@ -62,6 +62,41 @@ app.get('/user/:id',function(req,res){
     });
 });
 
+
+app.post('/user',function(req,res){
+    const bodyObject = req.body;
+    if (bodyObject.hasOwnProperty("name") && bodyObject.hasOwnProperty("email")
+        && bodyObject.hasOwnProperty("username")) {
+          User.forge({name:bodyObject.name, email:bodyObject.email, username:bodyObject.username})
+            .save()
+            .then(function(user){
+              res.send({id:user.id})
+            })
+            .catch(function(error){
+              res.status(404).send()
+            });
+    } else {
+      res.status(400).send();
+    }
+});
+
+
+app.post('/post',function(req,res){
+    const bodyObject = req.body;
+    if (bodyObject.hasOwnProperty("title") && bodyObject.hasOwnProperty("body")) {
+      Posts.forge({title:bodyObject.title, body: bodyObject.body,author:bodyObject.author})
+        .save()
+        .then(function(post){
+          res.send({id:post.id})
+        })
+        .catch(function(error){
+          res.status(404).send()
+        });
+    } else {
+      res.status(400).send();
+    }
+});
+
 app.get('/posts',function(req,res){
   new Posts()
     .fetchAll()
@@ -76,7 +111,7 @@ app.get('/posts',function(req,res){
 app.get('/post/:id',function(req,res){
   const id = req.params.id;
   new Posts({id: id})
-    .fetch({withRelated:['author']})
+    .fetch({withRelated:['author','comments']})
     .then(function(post){
       res.send(post.toJSON())
     })
@@ -84,6 +119,22 @@ app.get('/post/:id',function(req,res){
       res.status(404).send('Not Found');
     });
 
+});
+
+app.post('/comment',function(req,res){
+    const bodyObject = req.body;
+    if (bodyObject.hasOwnProperty("body")) {
+      Comments.forge({body: bodyObject.body, user_id: bodyObject.user_id, post_id: bodyObject.post_id})
+        .save()
+        .then(function(comment){
+          res.send({id:comment.id})
+        })
+        .catch(function(error){
+          res.status(404).send()
+        });
+    } else {
+      res.status(400).send()
+    }
 });
 
 // Exports for Server hoisting.
